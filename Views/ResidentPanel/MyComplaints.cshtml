@@ -1,0 +1,66 @@
+@model List<SocietyManagementSystem.Models.Complaint>
+@{
+    ViewData["Title"] = "My Complaints";
+    Layout = "_Layout";
+}
+
+<div class="card-custom mb-4">
+    <h5 style="color:#e94560;margin-bottom:20px;"><i class="fas fa-plus me-2"></i>Raise New Complaint</h5>
+    <form method="post" action="/ResidentPanel/AddComplaint">
+        <input type="hidden" name="residentId" value="@ViewBag.ResidentId" />
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" placeholder="Complaint title" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control" rows="3" placeholder="Describe your complaint" required></textarea>
+        </div>
+        <button type="submit" class="btn-save">
+            <i class="fas fa-paper-plane me-2"></i>Submit Complaint
+        </button>
+    </form>
+</div>
+
+<div class="card-custom">
+    @if (Model.Count == 0)
+    {
+        <div class="text-center py-4">
+            <i class="fas fa-exclamation-circle fa-3x mb-3" style="color:rgba(255,255,255,0.2)"></i>
+            <p style="color:rgba(255,255,255,0.4)">No complaints found!</p>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr><th>#</th><th>Title</th><th>Description</th><th>Status</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@c.Id</td>
+                        <td>@c.Title</td>
+                        <td>@c.Description</td>
+                        <td>
+                            @if (c.Status == "Resolved")
+                            {
+                                <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 10px;border-radius:6px;font-size:12px;">Resolved</span>
+                            }
+                            else if (c.Status == "In Progress")
+                            {
+                                <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 10px;border-radius:6px;font-size:12px;">In Progress</span>
+                            }
+                            else
+                            {
+                                <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:5px 10px;border-radius:6px;font-size:12px;">Pending</span>
+                            }
+                        </td>
+                        <td>@c.CreatedAt.ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

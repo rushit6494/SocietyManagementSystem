@@ -1,0 +1,76 @@
+@model List<SocietyManagementSystem.Models.Visitor>
+@{
+    ViewData["Title"] = "Visitor Management";
+    Layout = "_Layout";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <a href="/Visitor/Create" class="btn-add">
+        <i class="fas fa-plus me-1"></i> Add Visitor
+    </a>
+</div>
+
+<div class="card-custom">
+    @if (Model.Count == 0)
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-user-check fa-3x mb-3" style="color:rgba(255,255,255,0.2)"></i>
+            <p style="color:rgba(255,255,255,0.4)">No visitors found!</p>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Visitor Name</th>
+                    <th>Phone</th>
+                    <th>Purpose</th>
+                    <th>Visiting</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var v in Model)
+                {
+                    <tr>
+                        <td>@v.Id</td>
+                        <td>@v.Name</td>
+                        <td>@v.Phone</td>
+                        <td>@v.Purpose</td>
+                        <td>@v.Resident?.Name - Flat @v.Resident?.FlatNumber</td>
+                        <td>@v.VisitDate.ToString("dd MMM yyyy HH:mm")</td>
+                        <td>
+                            @if (v.Status == "Inside")
+                            {
+                                <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 10px;border-radius:6px;font-size:12px;">Inside</span>
+                            }
+                            else
+                            {
+                                <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);padding:5px 10px;border-radius:6px;font-size:12px;">Left</span>
+                            }
+                        </td>
+                        <td>
+                            @if (v.Status == "Inside")
+                            {
+                                <form method="post" action="/Visitor/MarkLeft/@v.Id" style="display:inline">
+                                    <button type="submit" class="btn btn-sm btn-warning me-1">
+                                        <i class="fas fa-sign-out-alt"></i> Mark Left
+                                    </button>
+                                </form>
+                            }
+                            <form method="post" action="/Visitor/Delete/@v.Id" style="display:inline">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

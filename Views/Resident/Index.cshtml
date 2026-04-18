@@ -1,0 +1,75 @@
+@model List<SocietyManagementSystem.Models.Resident>
+@{
+    ViewData["Title"] = "Residents";
+    Layout = "_Layout";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <a href="/Resident/Create" class="btn-add">
+        <i class="fas fa-plus me-1"></i> Add Resident
+    </a>
+</div>
+
+<div class="mb-3">
+    <input type="text" id="searchBox" class="form-control" placeholder="🔍 Search by Name, Flat No, Email..." onkeyup="searchResidents()" />
+</div>
+
+<div class="card-custom">
+    @if (Model.Count == 0)
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-users fa-3x mb-3" style="color: rgba(255,255,255,0.2)"></i>
+            <p style="color: rgba(255,255,255,0.4)">No residents found. Add your first resident!</p>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Flat No</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Join Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model)
+                {
+                    <tr>
+                        <td>@r.Id</td>
+                        <td><i class="fas fa-user-circle me-2" style="color:#e94560"></i>@r.Name</td>
+                        <td><span style="background:rgba(52,152,219,0.2);color:#3498db;padding:5px 10px;border-radius:6px;font-size:12px;">@r.FlatNumber</span></td>
+                        <td>@r.Phone</td>
+                        <td>@r.Email</td>
+                        <td>@r.JoinDate.ToString("dd MMM yyyy")</td>
+                        <td>
+                            <a href="/Resident/Edit/@r.Id" class="btn btn-sm btn-warning me-1">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form method="post" action="/Resident/Delete/@r.Id" style="display:inline">
+                                <button type="submit" class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Are you sure?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                <script>
+function searchResidents() {
+    var input = document.getElementById("searchBox").value.toLowerCase();
+    var rows = document.querySelectorAll("tbody tr");
+    rows.forEach(function(row) {
+        var text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+    });
+}
+</script>
+            </tbody>
+        </table>
+    }
+</div>

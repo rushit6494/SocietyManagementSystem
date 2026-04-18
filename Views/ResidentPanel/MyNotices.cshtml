@@ -1,0 +1,42 @@
+@model List<SocietyManagementSystem.Models.Notice>
+@{
+    ViewData["Title"] = "Notices";
+    Layout = "_Layout";
+}
+
+<div class="row">
+    @if (Model.Count == 0)
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-bullhorn fa-3x mb-3" style="color:rgba(255,255,255,0.2)"></i>
+            <p style="color:rgba(255,255,255,0.4)">No notices found!</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var n in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card-custom">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 style="color:#fff;margin:0;">@n.Title</h5>
+                        @if (n.Category == "Urgent")
+                        {
+                            <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:4px 10px;border-radius:6px;font-size:11px;">Urgent</span>
+                        }
+                        else if (n.Category == "Event")
+                        {
+                            <span style="background:rgba(52,152,219,0.2);color:#3498db;padding:4px 10px;border-radius:6px;font-size:11px;">Event</span>
+                        }
+                        else
+                        {
+                            <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:4px 10px;border-radius:6px;font-size:11px;">General</span>
+                        }
+                    </div>
+                    <p style="color:rgba(255,255,255,0.6);font-size:14px;">@n.Content</p>
+                    <small style="color:rgba(255,255,255,0.3);">@n.CreatedAt.ToString("dd MMM yyyy")</small>
+                </div>
+            </div>
+        }
+    }
+</div>

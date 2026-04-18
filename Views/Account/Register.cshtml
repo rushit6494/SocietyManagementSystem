@@ -1,0 +1,146 @@
+@{
+    ViewData["Title"] = "Create Account";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Society MS - Create Account</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            background: #0a0e1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,198,255,0.08), transparent 70%);
+            top: -100px; right: -100px;
+        }
+        .register-card {
+            background: linear-gradient(135deg, #0a0e1a, #111827);
+            border: 1px solid rgba(0,198,255,0.15);
+            border-radius: 24px;
+            padding: 45px;
+            width: 100%;
+            max-width: 580px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+        .logo {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 25px; color: #fff;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 25px rgba(0,198,255,0.3);
+        }
+        .register-title { color: #fff; font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 5px; }
+        .register-subtitle { color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 30px; font-size: 14px; }
+        .form-control, .form-select {
+            background: rgba(255,255,255,0.05);
+            border: 1.5px solid rgba(0,198,255,0.2);
+            border-radius: 10px; color: #fff;
+            padding: 11px 15px; font-size: 14px;
+        }
+        .form-control:focus, .form-select:focus {
+            background: rgba(0,198,255,0.05);
+            border-color: #00c6ff; color: #fff;
+            box-shadow: 0 0 0 3px rgba(0,198,255,0.1);
+        }
+        .form-control::placeholder { color: rgba(255,255,255,0.3); }
+        .form-label { color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+        .form-select option { background: #1a2744; }
+        .btn-register {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            border: none; color: #fff;
+            padding: 13px; width: 100%;
+            border-radius: 10px; font-weight: 700;
+            font-size: 15px; transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,198,255,0.3);
+        }
+        .btn-register:hover { opacity: 0.9; color: #fff; transform: translateY(-2px); }
+        .link-style { color: #00c6ff; text-decoration: none; font-size: 13px; }
+        .link-style:hover { color: #66d9ff; }
+        .alert-danger { background: rgba(233,69,96,0.15); border: 1px solid rgba(233,69,96,0.3); color: #ff6b81; border-radius: 10px; font-size: 13px; }
+        .alert-success { background: rgba(0,198,255,0.1); border: 1px solid rgba(0,198,255,0.3); color: #00c6ff; border-radius: 10px; font-size: 13px; }
+        .section-title {
+            color: #00c6ff; font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin-bottom: 12px; margin-top: 15px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0,198,255,0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="register-card">
+        <div class="logo"><i class="fas fa-building"></i></div>
+        <div class="register-title">Create Account</div>
+        <div class="register-subtitle">Join Society Management System</div>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger mb-3"><i class="fas fa-exclamation-circle me-2"></i>@ViewBag.Error</div>
+        }
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success mb-3"><i class="fas fa-check-circle me-2"></i>@ViewBag.Success</div>
+        }
+
+        <form method="post" action="/Account/Register">
+            <div class="section-title">Personal Information</div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter full name" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" name="phone" class="form-control" placeholder="Enter phone number" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Flat Number</label>
+                    <input type="text" name="flatNumber" class="form-control" placeholder="e.g. A-101" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Address</label>
+                    <input type="text" name="address" class="form-control" placeholder="Enter address" />
+                </div>
+            </div>
+            <div class="section-title">Login Credentials</div>
+            <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter email address" required />
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Create password" required />
+            </div>
+            <button type="submit" class="btn-register mb-3">
+                <i class="fas fa-user-plus me-2"></i>Create Account
+            </button>
+            <div class="text-center">
+                <span style="color:rgba(255,255,255,0.4);font-size:13px;">Already have an account?</span>
+                <a href="/Account/Login" class="link-style ms-2"><i class="fas fa-sign-in-alt me-1"></i>Sign In</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

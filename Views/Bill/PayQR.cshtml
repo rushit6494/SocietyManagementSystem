@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Pay Bill";
+    Layout = "_Layout";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card-custom text-center">
+            <h4 style="color:#e94560;margin-bottom:5px;"><i class="fas fa-qrcode me-2"></i>Scan & Pay</h4>
+            <p style="color:rgba(255,255,255,0.5);font-size:13px;">Scan QR code with any UPI app to pay</p>
+
+            <div style="background:#fff;padding:20px;border-radius:16px;display:inline-block;margin:20px 0;">
+                <img src="data:image/png;base64,@ViewBag.QRCode" width="220" height="220" />
+            </div>
+
+            <div class="card-custom mb-4" style="text-align:left;">
+                <div class="row">
+                    <div class="col-6">
+                        <small style="color:rgba(255,255,255,0.4);">Resident</small>
+                        <p style="color:#fff;margin:0;font-weight:600;">@ViewBag.Bill.Resident?.Name</p>
+                    </div>
+                    <div class="col-6">
+                        <small style="color:rgba(255,255,255,0.4);">Flat No</small>
+                        <p style="color:#fff;margin:0;font-weight:600;">@ViewBag.Bill.Resident?.FlatNumber</p>
+                    </div>
+                </div>
+                <hr style="border-color:rgba(255,255,255,0.08);margin:15px 0;" />
+                <div class="row">
+                    <div class="col-6">
+                        <small style="color:rgba(255,255,255,0.4);">Month</small>
+                        <p style="color:#fff;margin:0;font-weight:600;">@ViewBag.Bill.Month</p>
+                    </div>
+                    <div class="col-6">
+                        <small style="color:rgba(255,255,255,0.4);">Amount</small>
+                        <p style="color:#2ecc71;margin:0;font-weight:700;font-size:20px;">₹@ViewBag.Bill.Amount</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screenshot Upload -->
+            <div class="card-custom mb-4" style="text-align:left;">
+                <h6 style="color:#e94560;margin-bottom:15px;">
+                    <i class="fas fa-upload me-2"></i>Payment Screenshot Upload Karo
+                </h6>
+                <form method="post" action="/Bill/UploadScreenshot" enctype="multipart/form-data">
+                    <input type="hidden" name="billId" value="@ViewBag.Bill.Id" />
+                    <div class="mb-3">
+                        <label class="form-label">Payment Screenshot</label>
+                        <input type="file" name="screenshot" class="form-control" accept="image/*" required />
+                        <small style="color:rgba(255,255,255,0.4);">UPI payment ni screenshot upload karo</small>
+                    </div>
+                    <button type="submit" class="btn-save w-100">
+                        <i class="fas fa-upload me-2"></i>Screenshot Upload & Submit
+                    </button>
+                </form>
+            </div>
+
+            <a href="/ResidentPanel/MyBills" class="btn-back d-block text-center">
+                <i class="fas fa-arrow-left me-2"></i>Back to Bills
+            </a>
+        </div>
+    </div>
+</div>
