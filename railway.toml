@@ -1,6 +1,8 @@
 [build]
 builder = "nixpacks"
-buildCommand = "dotnet publish -c Release -o out"
+
+[build.nixpacksPlan.phases.setup]
+nixPkgs = ["dotnet-sdk_8"]
 
 [deploy]
 startCommand = "dotnet out/SocietyManagementSystem.dll"
