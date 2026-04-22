@@ -14,66 +14,65 @@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Month</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                    <th>Paid On</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var b in Model)
-                {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@b.Id</td>
-                        <td>@b.Month</td>
-                        <td>₹@b.Amount.ToString("0.##")</td>
-                        <td>
-                            @if (b.IsPaid)
-{
-    <a href="/Bill/DownloadReceipt/@b.Id" class="btn btn-sm btn-primary me-1">
-        <i class="fas fa-download"></i> Receipt
-    </a>
-}
-                            @if (b.IsPaid)
-                            {
-                                <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 12px;border-radius:6px;font-size:12px;"><i class="fas fa-check me-1"></i>Paid</span>
-                            }
-                            else if (b.PaymentStatus == "Pending Verification")
-                            {
-                                <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 12px;border-radius:6px;font-size:12px;"><i class="fas fa-clock me-1"></i>Pending Verification</span>
-                            }
-                            else
-                            {
-                                <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:5px 12px;border-radius:6px;font-size:12px;"><i class="fas fa-clock me-1"></i>Unpaid</span>
-                            }
-                        </td>
-                        <td>@(b.PaidOn.HasValue ? b.PaidOn.Value.ToString("dd MMM yyyy") : "-")</td>
-                        <td>
-                            @if (b.IsPaid)
-                            {
-                                <span style="color:#2ecc71;font-size:13px;"><i class="fas fa-check me-1"></i>Paid</span>
-                            }
-                            else if (b.PaymentStatus == "Pending Verification")
-                            {
-                                <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 10px;border-radius:6px;font-size:12px;">
-                                    <i class="fas fa-clock me-1"></i>Pending Verification
-                                </span>
-                            }
-                            else
-                            {
-                                <a href="/Bill/PayQR/@b.Id" class="btn btn-sm btn-success">
-                                    <i class="fas fa-qrcode me-1"></i>Pay Now
-                                </a>
-                            }
-                        </td>
+                        <th>#</th>
+                        <th>Month</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Paid On</th>
+                        <th>Action</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var b in Model)
+                    {
+                        <tr>
+                            <td>@b.Id</td>
+                            <td>@b.Month</td>
+                            <td>₹@b.Amount.ToString("0.##")</td>
+                            <td>
+                                @if (b.IsPaid)
+                                {
+                                    <a href="/Bill/DownloadReceipt/@b.Id" class="btn btn-sm btn-primary me-1">
+                                        <i class="fas fa-download"></i> Receipt
+                                    </a>
+                                    <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 12px;border-radius:6px;font-size:12px;"><i class="fas fa-check me-1"></i>Paid</span>
+                                }
+                                else if (b.PaymentStatus == "Pending Verification")
+                                {
+                                    <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 12px;border-radius:6px;font-size:12px;"><i class="fas fa-clock me-1"></i>Pending Verification</span>
+                                }
+                                else
+                                {
+                                    <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:5px 12px;border-radius:6px;font-size:12px;"><i class="fas fa-clock me-1"></i>Unpaid</span>
+                                }
+                            </td>
+                            <td style="white-space:nowrap;">@(b.PaidOn.HasValue ? b.PaidOn.Value.ToString("dd MMM yyyy") : "-")</td>
+                            <td>
+                                @if (b.IsPaid)
+                                {
+                                    <span style="color:#2ecc71;font-size:13px;"><i class="fas fa-check me-1"></i>Paid</span>
+                                }
+                                else if (b.PaymentStatus == "Pending Verification")
+                                {
+                                    <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 10px;border-radius:6px;font-size:12px;">
+                                        <i class="fas fa-clock me-1"></i>Pending Verification
+                                    </span>
+                                }
+                                else
+                                {
+                                    <a href="/Bill/PayQR/@b.Id" class="btn btn-sm btn-success">
+                                        <i class="fas fa-qrcode me-1"></i>Pay Now
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
 </div>

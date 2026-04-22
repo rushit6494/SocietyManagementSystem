@@ -24,42 +24,48 @@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Flat No</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Join Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var r in Model)
-                {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@r.Id</td>
-                        <td><i class="fas fa-user-circle me-2" style="color:#e94560"></i>@r.Name</td>
-                        <td><span style="background:rgba(52,152,219,0.2);color:#3498db;padding:5px 10px;border-radius:6px;font-size:12px;">@r.FlatNumber</span></td>
-                        <td>@r.Phone</td>
-                        <td>@r.Email</td>
-                        <td>@r.JoinDate.ToString("dd MMM yyyy")</td>
-                        <td>
-                            <a href="/Resident/Edit/@r.Id" class="btn btn-sm btn-warning me-1">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <form method="post" action="/Resident/Delete/@r.Id" style="display:inline">
-                                <button type="submit" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Are you sure?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Flat No</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Join Date</th>
+                        <th>Actions</th>
                     </tr>
-                }
-                <script>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model)
+                    {
+                        <tr>
+                            <td>@r.Id</td>
+                            <td><i class="fas fa-user-circle me-2" style="color:#e94560"></i>@r.Name</td>
+                            <td><span style="background:rgba(52,152,219,0.2);color:#3498db;padding:5px 10px;border-radius:6px;font-size:12px;">@r.FlatNumber</span></td>
+                            <td>@r.Phone</td>
+                            <td>@r.Email</td>
+                            <td style="white-space:nowrap;">@r.JoinDate.ToString("dd MMM yyyy")</td>
+                            <td style="white-space:nowrap;">
+                                <a href="/Resident/Edit/@r.Id" class="btn btn-sm btn-warning me-1">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form method="post" action="/Resident/Delete/@r.Id" style="display:inline">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<script>
 function searchResidents() {
     var input = document.getElementById("searchBox").value.toLowerCase();
     var rows = document.querySelectorAll("tbody tr");
@@ -69,7 +75,3 @@ function searchResidents() {
     });
 }
 </script>
-            </tbody>
-        </table>
-    }
-</div>

@@ -20,57 +20,59 @@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Visitor Name</th>
-                    <th>Phone</th>
-                    <th>Purpose</th>
-                    <th>Visiting</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var v in Model)
-                {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@v.Id</td>
-                        <td>@v.Name</td>
-                        <td>@v.Phone</td>
-                        <td>@v.Purpose</td>
-                        <td>@v.Resident?.Name - Flat @v.Resident?.FlatNumber</td>
-                        <td>@v.VisitDate.ToString("dd MMM yyyy HH:mm")</td>
-                        <td>
-                            @if (v.Status == "Inside")
-                            {
-                                <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 10px;border-radius:6px;font-size:12px;">Inside</span>
-                            }
-                            else
-                            {
-                                <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);padding:5px 10px;border-radius:6px;font-size:12px;">Left</span>
-                            }
-                        </td>
-                        <td>
-                            @if (v.Status == "Inside")
-                            {
-                                <form method="post" action="/Visitor/MarkLeft/@v.Id" style="display:inline">
-                                    <button type="submit" class="btn btn-sm btn-warning me-1">
-                                        <i class="fas fa-sign-out-alt"></i> Mark Left
+                        <th>#</th>
+                        <th>Visitor Name</th>
+                        <th>Phone</th>
+                        <th>Purpose</th>
+                        <th>Visiting</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var v in Model)
+                    {
+                        <tr>
+                            <td>@v.Id</td>
+                            <td>@v.Name</td>
+                            <td>@v.Phone</td>
+                            <td>@v.Purpose</td>
+                            <td>@v.Resident?.Name - Flat @v.Resident?.FlatNumber</td>
+                            <td style="white-space:nowrap;">@v.VisitDate.ToString("dd MMM yyyy HH:mm")</td>
+                            <td>
+                                @if (v.Status == "Inside")
+                                {
+                                    <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 10px;border-radius:6px;font-size:12px;">Inside</span>
+                                }
+                                else
+                                {
+                                    <span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);padding:5px 10px;border-radius:6px;font-size:12px;">Left</span>
+                                }
+                            </td>
+                            <td style="white-space:nowrap;">
+                                @if (v.Status == "Inside")
+                                {
+                                    <form method="post" action="/Visitor/MarkLeft/@v.Id" style="display:inline">
+                                        <button type="submit" class="btn btn-sm btn-warning me-1">
+                                            <i class="fas fa-sign-out-alt"></i> Mark Left
+                                        </button>
+                                    </form>
+                                }
+                                <form method="post" action="/Visitor/Delete/@v.Id" style="display:inline">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
-                            }
-                            <form method="post" action="/Visitor/Delete/@v.Id" style="display:inline">
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
 </div>

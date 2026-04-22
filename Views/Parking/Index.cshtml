@@ -20,47 +20,49 @@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Slot No</th>
-                    <th>Vehicle Type</th>
-                    <th>Vehicle No</th>
-                    <th>Resident</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var p in Model)
-                {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@p.Id</td>
-                        <td>@p.SlotNumber</td>
-                        <td>@p.VehicleType</td>
-                        <td>@p.VehicleNumber</td>
-                        <td>@(p.Resident?.Name ?? "-")</td>
-                        <td>
-                            @if (p.IsOccupied)
-                            {
-                                <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:5px 10px;border-radius:6px;font-size:12px;">Occupied</span>
-                            }
-                            else
-                            {
-                                <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 10px;border-radius:6px;font-size:12px;">Available</span>
-                            }
-                        </td>
-                        <td>
-                            <form method="post" action="/Parking/Delete/@p.Id" style="display:inline">
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <th>#</th>
+                        <th>Slot No</th>
+                        <th>Vehicle Type</th>
+                        <th>Vehicle No</th>
+                        <th>Resident</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                        <tr>
+                            <td>@p.Id</td>
+                            <td>@p.SlotNumber</td>
+                            <td>@p.VehicleType</td>
+                            <td>@p.VehicleNumber</td>
+                            <td>@(p.Resident?.Name ?? "-")</td>
+                            <td>
+                                @if (p.IsOccupied)
+                                {
+                                    <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:5px 10px;border-radius:6px;font-size:12px;">Occupied</span>
+                                }
+                                else
+                                {
+                                    <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 10px;border-radius:6px;font-size:12px;">Available</span>
+                                }
+                            </td>
+                            <td>
+                                <form method="post" action="/Parking/Delete/@p.Id" style="display:inline">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
 </div>

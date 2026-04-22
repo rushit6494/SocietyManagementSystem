@@ -14,55 +14,57 @@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Resident</th>
-                    <th>Flat</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var c in Model)
-                {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@c.Id</td>
-                        <td>@c.Resident?.Name</td>
-                        <td>@c.Resident?.FlatNumber</td>
-                        <td>@c.Title</td>
-                        <td>@c.Description</td>
-                        <td>
-                            @if (c.Status == "Resolved")
-                            {
-                                <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 10px;border-radius:6px;font-size:12px;">Resolved</span>
-                            }
-                            else if (c.Status == "In Progress")
-                            {
-                                <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 10px;border-radius:6px;font-size:12px;">In Progress</span>
-                            }
-                            else
-                            {
-                                <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:5px 10px;border-radius:6px;font-size:12px;">Pending</span>
-                            }
-                        </td>
-                        <td>@c.CreatedAt.ToString("dd MMM yyyy")</td>
-                        <td>
-                            <a href="/Complaint/UpdateStatus/@c.Id?status=In Progress" class="btn btn-sm btn-warning me-1">In Progress</a>
-                            <a href="/Complaint/UpdateStatus/@c.Id?status=Resolved" class="btn btn-sm btn-success me-1">Resolve</a>
-                            <form method="post" action="/Complaint/Delete/@c.Id" style="display:inline">
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <th>#</th>
+                        <th>Resident</th>
+                        <th>Flat</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <td>@c.Id</td>
+                            <td>@c.Resident?.Name</td>
+                            <td>@c.Resident?.FlatNumber</td>
+                            <td>@c.Title</td>
+                            <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">@c.Description</td>
+                            <td>
+                                @if (c.Status == "Resolved")
+                                {
+                                    <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 10px;border-radius:6px;font-size:12px;">Resolved</span>
+                                }
+                                else if (c.Status == "In Progress")
+                                {
+                                    <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 10px;border-radius:6px;font-size:12px;">In Progress</span>
+                                }
+                                else
+                                {
+                                    <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:5px 10px;border-radius:6px;font-size:12px;">Pending</span>
+                                }
+                            </td>
+                            <td style="white-space:nowrap;">@c.CreatedAt.ToString("dd MMM yyyy")</td>
+                            <td style="white-space:nowrap;">
+                                <a href="/Complaint/UpdateStatus/@c.Id?status=In Progress" class="btn btn-sm btn-warning me-1">In Progress</a>
+                                <a href="/Complaint/UpdateStatus/@c.Id?status=Resolved" class="btn btn-sm btn-success me-1">Resolve</a>
+                                <form method="post" action="/Complaint/Delete/@c.Id" style="display:inline">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
 </div>
