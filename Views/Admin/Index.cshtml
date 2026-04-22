@@ -3,81 +3,64 @@
     Layout = "_Layout";
 }
 
-<div style="background:linear-gradient(135deg,#1a90c8,#2980b9);border-radius:16px;padding:25px 30px;margin-bottom:25px;box-shadow:0 4px 20px rgba(26,144,200,0.3);border:1px solid rgba(255,255,255,0.1);">
-    <h3 style="color:#fff;font-weight:700;margin:0;font-size:22px;">Welcome, @Context.Session.GetString("UserName")! 👋</h3>
-    <p style="color:rgba(255,255,255,0.8);margin:5px 0 0;">Here's what's happening in your society today.</p>
+<div class="welcome-card">
+    <h3>Welcome, @Context.Session.GetString("UserName")! 👋</h3>
+    <p>Here's what's happening in your society today.</p>
 </div>
 
-<div class="row">
-    <div class="col-md-3">
+<div class="row g-3">
+    <div class="col-6 col-md-3">
         <a href="/Resident/Index" class="stat-card" style="background:linear-gradient(135deg,#131c2e,#1a2744);border:1px solid rgba(0,198,255,0.08);">
             <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
-            <div class="stat-icon" style="background:rgba(0,198,255,0.15);color:#00c6ff;">
-                <i class="fas fa-users"></i>
-            </div>
+            <div class="stat-icon" style="background:rgba(0,198,255,0.15);color:#00c6ff;"><i class="fas fa-users"></i></div>
             <div class="stat-number">@ViewBag.TotalResidents</div>
             <div class="stat-label">Total Residents</div>
         </a>
     </div>
-    <div class="col-md-3">
+    <div class="col-6 col-md-3">
         <a href="/Bill/Index" class="stat-card" style="background:linear-gradient(135deg,#131c2e,#1a2744);border:1px solid rgba(0,198,255,0.08);">
             <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
-            <div class="stat-icon" style="background:rgba(233,69,96,0.15);color:#e94560;">
-                <i class="fas fa-file-invoice-dollar"></i>
-            </div>
+            <div class="stat-icon" style="background:rgba(233,69,96,0.15);color:#e94560;"><i class="fas fa-file-invoice-dollar"></i></div>
             <div class="stat-number">@ViewBag.TotalBills</div>
             <div class="stat-label">Total Bills</div>
         </a>
     </div>
-    <div class="col-md-3">
+    <div class="col-6 col-md-3">
         <a href="/Complaint/Index" class="stat-card" style="background:linear-gradient(135deg,#131c2e,#1a2744);border:1px solid rgba(0,198,255,0.08);">
             <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
-            <div class="stat-icon" style="background:rgba(241,196,15,0.15);color:#f1c40f;">
-                <i class="fas fa-exclamation-circle"></i>
-            </div>
+            <div class="stat-icon" style="background:rgba(241,196,15,0.15);color:#f1c40f;"><i class="fas fa-exclamation-circle"></i></div>
             <div class="stat-number">@ViewBag.PendingComplaints</div>
             <div class="stat-label">Pending Complaints</div>
         </a>
     </div>
-    <div class="col-md-3">
+    <div class="col-6 col-md-3">
         <a href="/Bill/Index" class="stat-card" style="background:linear-gradient(135deg,#131c2e,#1a2744);border:1px solid rgba(0,198,255,0.08);">
             <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
-            <div class="stat-icon" style="background:rgba(155,89,182,0.15);color:#9b59b6;">
-                <i class="fas fa-money-bill-wave"></i>
-            </div>
+            <div class="stat-icon" style="background:rgba(155,89,182,0.15);color:#9b59b6;"><i class="fas fa-money-bill-wave"></i></div>
             <div class="stat-number">@ViewBag.UnpaidBills</div>
             <div class="stat-label">Unpaid Bills</div>
         </a>
     </div>
-</div>
-
-<div class="row mt-2">
-    <div class="col-md-4">
+    <div class="col-6 col-md-4">
         <a href="/Notice/Index" class="stat-card" style="background:linear-gradient(135deg,#131c2e,#1a2744);border:1px solid rgba(0,198,255,0.08);">
             <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
-            <div class="stat-icon" style="background:rgba(46,204,113,0.15);color:#2ecc71;">
-                <i class="fas fa-bullhorn"></i>
-            </div>
+            <div class="stat-icon" style="background:rgba(46,204,113,0.15);color:#2ecc71;"><i class="fas fa-bullhorn"></i></div>
             <div class="stat-number">@ViewBag.TotalNotices</div>
             <div class="stat-label">Total Notices</div>
         </a>
     </div>
-    <div class="col-md-4">
+    <div class="col-6 col-md-4">
         <a href="/Parking/Index" class="stat-card" style="background:linear-gradient(135deg,#131c2e,#1a2744);border:1px solid rgba(0,198,255,0.08);">
             <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
-            <div class="stat-icon" style="background:rgba(26,188,156,0.15);color:#1abc9c;">
-                <i class="fas fa-parking"></i>
-            </div>
+            <div class="stat-icon" style="background:rgba(26,188,156,0.15);color:#1abc9c;"><i class="fas fa-parking"></i></div>
             <div class="stat-number">@ViewBag.TotalParking</div>
             <div class="stat-label">Parking Slots</div>
         </a>
     </div>
-    <div class="col-md-4">
+    <div class="col-12 col-md-4">
         <a href="/Visitor/Index" class="stat-card" style="background:linear-gradient(135deg,#131c2e,#1a2744);border:1px solid rgba(0,198,255,0.08);">
             <div class="stat-arrow"><i class="fas fa-arrow-right"></i></div>
-            <div class="stat-icon" style="background:rgba(230,126,34,0.15);color:#e67e22;">
-                <i class="fas fa-user-check"></i>
-            </div>
+            <div class="stat-icon" style="background:rgba(230,126,34,0.15);color:#e67e22;"><i class="fas fa-user-check"></i></div>
             <div class="stat-number">@ViewBag.TotalVisitors</div>
             <div class="stat-label">Total Visitors</div>
         </a>
