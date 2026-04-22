@@ -115,6 +115,34 @@
         .divider { display: flex; align-items: center; gap: 10px; margin: 20px 0; }
         .divider hr { flex: 1; border-color: rgba(255,255,255,0.1); }
         .divider span { color: rgba(255,255,255,0.3); font-size: 12px; }
+
+        /* ===== MOBILE ONLY ===== */
+        @media (max-width: 768px) {
+            body { align-items: flex-start; padding: 0; overflow-y: auto; }
+            .login-wrapper {
+                flex-direction: column;
+                width: 100%;
+                min-height: 100vh;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .login-left {
+                padding: 30px 24px 25px;
+                border-right: none;
+                border-bottom: 1px solid rgba(0,198,255,0.1);
+            }
+            .login-left .logo { width: 60px; height: 60px; font-size: 26px; margin-bottom: 15px; }
+            .login-left h2 { font-size: 22px; margin-bottom: 6px; }
+            .login-left p { font-size: 13px; }
+            .login-left .features { margin-top: 18px; }
+            .login-left .feature-item { padding: 8px 0; font-size: 13px; }
+            .login-right {
+                padding: 30px 24px 40px;
+                justify-content: flex-start;
+            }
+            .login-right h3 { font-size: 22px; }
+            .login-right > p { margin-bottom: 22px; }
+        }
     </style>
 </head>
 <body>
