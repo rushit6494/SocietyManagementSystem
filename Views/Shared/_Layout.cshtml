@@ -206,6 +206,72 @@
         /* OVERRIDE BOOTSTRAP */
         .text-dark, h1, h2, h3, h4, h5, h6, p, span, td, th, label, a { color: inherit; }
         input, textarea, select { color: #fff !important; }
+        /* ===== RESPONSIVE CSS ===== */
+@media (max-width: 991px) {
+    .top-navbar {
+        height: auto;
+        min-height: 65px;
+        flex-wrap: wrap;
+        padding: 10px 15px;
+        gap: 8px;
+    }
+    .nav-links {
+        order: 3;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2px;
+        padding: 5px 0;
+        border-top: 1px solid rgba(0,198,255,0.1);
+    }
+    .nav-links a {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    .nav-links a i { font-size: 12px; }
+    .navbar-right { gap: 8px; }
+    .user-role { display: none; }
+    .main-wrapper {
+        margin-top: 120px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-navbar { padding: 8px 12px; }
+    .navbar-brand .brand-text { font-size: 16px; }
+    .navbar-brand .logo-icon { width: 35px; height: 35px; font-size: 15px; }
+    .nav-links a { padding: 5px 8px; font-size: 11px; }
+    .user-badge { padding: 5px 10px; }
+    .user-name { font-size: 12px; }
+    .btn-logout-nav { padding: 6px 12px; font-size: 12px; }
+    .main-wrapper { margin-top: 130px; padding: 12px; }
+    .page-header h2 { font-size: 20px; }
+    .stat-card { padding: 18px; margin-bottom: 15px; }
+    .stat-number { font-size: 28px; }
+    .welcome-card { padding: 18px 20px; }
+    .welcome-card h3 { font-size: 18px; }
+    .card-custom { padding: 15px; }
+    .form-card { padding: 20px; }
+    .table { font-size: 12px; }
+    .table thead th { padding: 8px 10px; font-size: 11px; }
+    .table tbody td { padding: 8px 10px; font-size: 12px; }
+    .btn-add { padding: 8px 14px; font-size: 13px; }
+    .btn-save { padding: 10px 20px; font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+    .nav-links a span { display: none; }
+    .nav-links a { padding: 6px 8px; }
+    .btn-logout-nav span { display: none; }
+    .navbar-brand .brand-sub { display: none; }
+    .main-wrapper { margin-top: 110px; padding: 10px; }
+    .row { margin: 0 -5px; }
+    .col-md-3, .col-md-4 { padding: 0 5px; }
+    .stat-number { font-size: 24px; }
+    .welcome-card h3 { font-size: 16px; }
+    .table-responsive { overflow-x: auto; }
+}
     </style>
 </head>
 <body>
