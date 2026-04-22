@@ -14,8 +14,21 @@
     }
     else
     {
+        <style>
+            .bills-table th, .bills-table td {
+                white-space: nowrap;
+                vertical-align: middle;
+            }
+            .status-badge {
+                display: inline-block;
+                padding: 5px 12px;
+                border-radius: 6px;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+        </style>
         <div class="table-responsive">
-            <table class="table">
+            <table class="table bills-table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -31,34 +44,34 @@
                     {
                         <tr>
                             <td>@b.Id</td>
-                            <td>@b.Month</td>
-                            <td>₹@b.Amount.ToString("0.##")</td>
+                            <td style="white-space:nowrap;">@b.Month</td>
+                            <td style="white-space:nowrap;">₹@b.Amount.ToString("0.##")</td>
                             <td>
+                                @if (b.IsPaid)
+                                {
+                                    <span class="status-badge" style="background:rgba(46,204,113,0.2);color:#2ecc71;"><i class="fas fa-check me-1"></i>Paid</span>
+                                }
+                                else if (b.PaymentStatus == "Pending Verification")
+                                {
+                                    <span class="status-badge" style="background:rgba(241,196,15,0.2);color:#f1c40f;"><i class="fas fa-clock me-1"></i>Pending</span>
+                                }
+                                else
+                                {
+                                    <span class="status-badge" style="background:rgba(233,69,96,0.2);color:#e94560;"><i class="fas fa-clock me-1"></i>Unpaid</span>
+                                }
+                            </td>
+                            <td style="white-space:nowrap;">@(b.PaidOn.HasValue ? b.PaidOn.Value.ToString("dd MMM yyyy") : "-")</td>
+                            <td style="white-space:nowrap;">
                                 @if (b.IsPaid)
                                 {
                                     <a href="/Bill/DownloadReceipt/@b.Id" class="btn btn-sm btn-primary me-1">
                                         <i class="fas fa-download"></i> Receipt
                                     </a>
-                                    <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 12px;border-radius:6px;font-size:12px;"><i class="fas fa-check me-1"></i>Paid</span>
-                                }
-                                else if (b.PaymentStatus == "Pending Verification")
-                                {
-                                    <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 12px;border-radius:6px;font-size:12px;"><i class="fas fa-clock me-1"></i>Pending Verification</span>
-                                }
-                                else
-                                {
-                                    <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:5px 12px;border-radius:6px;font-size:12px;"><i class="fas fa-clock me-1"></i>Unpaid</span>
-                                }
-                            </td>
-                            <td style="white-space:nowrap;">@(b.PaidOn.HasValue ? b.PaidOn.Value.ToString("dd MMM yyyy") : "-")</td>
-                            <td>
-                                @if (b.IsPaid)
-                                {
                                     <span style="color:#2ecc71;font-size:13px;"><i class="fas fa-check me-1"></i>Paid</span>
                                 }
                                 else if (b.PaymentStatus == "Pending Verification")
                                 {
-                                    <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 10px;border-radius:6px;font-size:12px;">
+                                    <span class="status-badge" style="background:rgba(241,196,15,0.2);color:#f1c40f;">
                                         <i class="fas fa-clock me-1"></i>Pending Verification
                                     </span>
                                 }
