@@ -42,7 +42,7 @@
                     <tr>
                         <td>@c.Id</td>
                         <td>@c.Title</td>
-                        <td>@c.Description</td>
+                        <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="@c.Description">@c.Description</td>
                         <td>
                             @if (c.Status == "Resolved")
                             {
