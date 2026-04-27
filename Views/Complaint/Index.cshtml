@@ -4,67 +4,50 @@
     Layout = "_Layout";
 }
 
-<div class="card-custom">
-    @if (Model.Count == 0)
+@if (Model.Count == 0)
+{
+    <div class="card-custom text-center py-5">
+        <i class="fas fa-exclamation-circle fa-3x mb-3" style="color:rgba(255,255,255,0.2)"></i>
+        <p style="color:rgba(255,255,255,0.4)">No complaints found!</p>
+    </div>
+}
+else
+{
+    @foreach (var c in Model)
     {
-        <div class="text-center py-5">
-            <i class="fas fa-exclamation-circle fa-3x mb-3" style="color:rgba(255,255,255,0.2)"></i>
-            <p style="color:rgba(255,255,255,0.4)">No complaints found!</p>
-        </div>
-    }
-    else
-    {
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Resident</th>
-                        <th>Flat</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var c in Model)
+        <div class="card-custom mb-3">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
+                <div style="flex:1;min-width:0;">
+                    <h6 style="color:#fff;margin:0 0 4px;font-size:14px;font-weight:600;word-break:break-word;">@c.Title</h6>
+                    <p style="color:rgba(255,255,255,0.5);font-size:12px;margin:0;word-break:break-word;">@c.Description</p>
+                </div>
+                <div style="white-space:nowrap;">
+                    @if (c.Status == "Resolved")
                     {
-                        <tr>
-                            <td>@c.Id</td>
-                            <td>@c.Resident?.Name</td>
-                            <td>@c.Resident?.FlatNumber</td>
-                            <td>@c.Title</td>
-                            <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">@c.Description</td>
-                            <td>
-                                @if (c.Status == "Resolved")
-                                {
-                                    <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:5px 10px;border-radius:6px;font-size:12px;">Resolved</span>
-                                }
-                                else if (c.Status == "In Progress")
-                                {
-                                    <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:5px 10px;border-radius:6px;font-size:12px;">In Progress</span>
-                                }
-                                else
-                                {
-                                    <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:5px 10px;border-radius:6px;font-size:12px;">Pending</span>
-                                }
-                            </td>
-                            <td style="white-space:nowrap;">@c.CreatedAt.ToString("dd MMM yyyy")</td>
-                            <td style="white-space:nowrap;">
-                                <a href="/Complaint/UpdateStatus/@c.Id?status=In Progress" class="btn btn-sm btn-warning me-1">In Progress</a>
-                                <a href="/Complaint/UpdateStatus/@c.Id?status=Resolved" class="btn btn-sm btn-success me-1">Resolve</a>
-                                <form method="post" action="/Complaint/Delete/@c.Id" style="display:inline">
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                        <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:4px 10px;border-radius:20px;font-size:11px;">✅ Resolved</span>
                     }
-                </tbody>
-            </table>
+                    else if (c.Status == "In Progress")
+                    {
+                        <span style="background:rgba(241,196,15,0.2);color:#f1c40f;padding:4px 10px;border-radius:20px;font-size:11px;">⏳ In Progress</span>
+                    }
+                    else
+                    {
+                        <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:4px 10px;border-radius:20px;font-size:11px;">🕐 Pending</span>
+                    }
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-2">
+                <small style="color:rgba(255,255,255,0.3);font-size:11px;"><i class="fas fa-calendar me-1"></i>@c.CreatedAt.ToString("dd MMM yyyy")</small>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a href="/Complaint/UpdateStatus/@c.Id?status=In Progress" class="btn btn-sm btn-warning" style="font-size:11px;padding:4px 10px;">In Progress</a>
+                    <a href="/Complaint/UpdateStatus/@c.Id?status=Resolved" class="btn btn-sm btn-success" style="font-size:11px;padding:4px 10px;">Resolve</a>
+                    <form method="post" action="/Complaint/Delete/@c.Id" style="display:inline">
+                        <button type="submit" class="btn btn-sm btn-danger" style="font-size:11px;padding:4px 10px;" onclick="return confirm('Delete?')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     }
-</div>
+}
