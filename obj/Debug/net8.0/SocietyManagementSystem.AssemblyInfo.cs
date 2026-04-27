@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SocietyManagementSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a707e29d33de19f3a98e35252332cb6f7d73165e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a32bb86ea6bb35fc5f85d517b6c33a5cf1ad646")]
 [assembly: System.Reflection.AssemblyProductAttribute("SocietyManagementSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SocietyManagementSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

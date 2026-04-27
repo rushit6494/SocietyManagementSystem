@@ -35,7 +35,7 @@ else
     {
         <div class="card-custom mb-3">
             <div class="d-flex justify-content-between align-items-start mb-2">
-                <h6 style="color:#fff;margin:0;font-size:14px;font-weight:600;">@c.Title</h6>
+                <h6 style="color:#fff;margin:0 0 4px;font-size:14px;font-weight:600;word-wrap:break-word;overflow-wrap:break-word;">@c.Title</h6>
                 @if (c.Status == "Resolved")
                 {
                     <span style="background:rgba(46,204,113,0.2);color:#2ecc71;padding:4px 10px;border-radius:20px;font-size:11px;white-space:nowrap;">✅ Resolved</span>
@@ -49,7 +49,7 @@ else
                     <span style="background:rgba(233,69,96,0.2);color:#e94560;padding:4px 10px;border-radius:20px;font-size:11px;white-space:nowrap;">🕐 Pending</span>
                 }
             </div>
-            <p style="color:rgba(255,255,255,0.6);font-size:13px;margin:0 0 8px;">@c.Description</p>
+            <p style="color:rgba(255,255,255,0.6);font-size:13px;margin:0 0 8px;word-wrap:break-word;overflow-wrap:break-word;white-space:normal;">@c.Description</p>
             <small style="color:rgba(255,255,255,0.3);font-size:11px;"><i class="fas fa-calendar me-1"></i>@c.CreatedAt.ToString("dd MMM yyyy")</small>
         </div>
     }
